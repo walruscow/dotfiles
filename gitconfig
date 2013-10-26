@@ -1,0 +1,7 @@
+[user]
+	name = WalrusCow
+	email = willgmcd@gmail.com
+[credential]
+	helper = cache
+[color]
+	ui = true
