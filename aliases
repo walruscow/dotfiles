@@ -1,0 +1,14 @@
+#.aliases
+
+alias chrome='google-chrome'
+alias ack='ack-grep'
+alias pdftex='pdflatex'
+
+alias g='git'
+alias gc='git checkout'
+alias gb='git branch'
+alias gs='git status'
+
+alias lr='lein run'
+
+alias h?='history | grep'
