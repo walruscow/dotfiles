@@ -53,3 +53,6 @@ nnoremap <CR> o<Esc>k
 " Insert newline before this one when hitting shift-enter
 " This doesn't work in terminal VIM
 nnoremap <S-Enter> O<Esc>j
+
+" Don't move when searching current word
+nnoremap # #N
