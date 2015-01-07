@@ -30,14 +30,19 @@ au ColorScheme * highlight ExtraWhitespace ctermbg=darkgreen
 match ExtraWhitespace /\s\+\%#\@<!$/
 au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 au InsertLeave * match ExtraWhitespace /\s\+$/
+au BufEnter * match ExtraWhitespace /\s\+$/
 
 " 2 tab spacing in javascript and clojure
-au FileType clj,javascript set shiftwidth=2
-au FileType clj,javascript set tabstop=2
-au FileType clj,javascript set softtabstop=2
+au FileType coffee,clj,javascript set shiftwidth=2
+au FileType coffee,clj,javascript set tabstop=2
+au FileType coffee,clj,javascript set softtabstop=2
 
 " Highlight search results
 set hlsearch
+
+" Black column at 80
+set cc=80
+highlight ColorColumn ctermbg=0
 
 " Remove search highlighting on space
 nmap <space> :noh <CR>
@@ -47,6 +52,7 @@ nnoremap J mUJ`U
 
 " Do not continue comments in JS, C, C++
 au FileType javascript,c,cpp setlocal comments-=:// comments+=f://
+au FileType coffee setlocal comments-=:# comments+=f:#
 
 " Insert newline when hitting enter
 nnoremap <CR> o<Esc>k
