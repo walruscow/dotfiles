@@ -62,3 +62,5 @@ nnoremap <S-Enter> O<Esc>j
 
 " Don't move when searching current word
 nnoremap # #N
+
+execute pathogen#infect()

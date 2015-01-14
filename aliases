@@ -18,6 +18,11 @@ alias g='git'
 alias gc='git checkout'
 alias gb='git branch'
 alias gs='git status'
+alias gd='git diff'
+alias gl='git log --oneline -10'
+alias gst='git stash'
+
+#alias serve='python -m SimpleHTTPServer'
 
 alias lr='lein run'
 
