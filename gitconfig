@@ -5,3 +5,7 @@
 	helper = cache
 [color]
 	ui = true
+[core]
+	editor = vim
+[pull]
+	rebase = true

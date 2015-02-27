@@ -1,33 +1,30 @@
 #.aliases
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-alias chrome='google-chrome'
-alias ack='ack-grep'
-alias pdftex='pdflatex'
-
-alias g='git'
-alias gc='git checkout'
-alias gb='git branch'
-alias gs='git status'
-alias gd='git diff'
-alias gl='git log --oneline -10'
-alias gst='git stash'
-
-#alias serve='python -m SimpleHTTPServer'
-
-alias lr='lein run'
-
-alias h?='history | grep'
-
+# ls
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls'
+
+# Git
+alias g='git'
+alias gc='git checkout'
+alias gb='git branch'
+alias gd='git diff'
+alias gs='git status'
+alias gl='git log --oneline -10'
+alias gst='git stash'
+
+alias python='python3'
+alias g++="g++ -std=c++0x"
+
+# Shortcuts
+alias serve='python2 -m SimpleHTTPServer'
+alias h?='history | grep'
+alias wifi='sudo iwlist wlan0 scan'
+alias TT='touchpad-toggle'
+alias chrome='google-chrome'
+alias ack='ag'
