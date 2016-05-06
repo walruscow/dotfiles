@@ -4,10 +4,10 @@ set nu
 " We want tilde to be an op so we can move with it
 set tildeop
 
-" 4 space tabs
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
+" 2 space tabs
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
 
 " Spaces are preferred to tabs for ease of insertion
 set expandtab
@@ -32,10 +32,10 @@ au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 au InsertLeave * match ExtraWhitespace /\s\+$/
 au BufEnter * match ExtraWhitespace /\s\+$/
 
-" 2 tab spacing in javascript and clojure
-au FileType coffee,clj,javascript set shiftwidth=2
-au FileType coffee,clj,javascript set tabstop=2
-au FileType coffee,clj,javascript set softtabstop=2
+" 4 tab spacing in python
+au FileType python set shiftwidth=4
+au FileType python set tabstop=4
+au FileType python set softtabstop=4
 
 " Highlight search results
 set hlsearch
@@ -44,15 +44,12 @@ set hlsearch
 set cc=80
 highlight ColorColumn ctermbg=0
 
-" Remove search highlighting on space
-nmap <space> :noh <CR>
-
 " Save cursor position on J
 nnoremap J mUJ`U
 
-" Do not continue comments in JS, C, C++
-au FileType javascript,c,cpp setlocal comments-=:// comments+=f://
-au FileType coffee setlocal comments-=:# comments+=f:#
+" Do not continue comments
+au FileType java,javascript,c,cpp setlocal comments-=:// comments+=f://
+au FileType python,coffee setlocal comments-=:# comments+=f:#
 
 " Insert newline when hitting enter
 nnoremap <CR> o<Esc>k
@@ -64,3 +61,16 @@ nnoremap <S-Enter> O<Esc>j
 nnoremap # #N
 
 execute pathogen#infect()
+
+let mapleader = "\<Space>"
+
+" Remove search highlighting on comma
+nmap , :noh <CR>
+set showcmd
+
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
