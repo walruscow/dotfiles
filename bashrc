@@ -1,5 +1,4 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
-
 # Show how many shells deep we are, without overcounting from re-source
 _WMCD_SOURCE_COUNT=$((_WMCD_SOURCE_COUNT+1))
 if [ $_WMCD_SOURCE_COUNT == 1 ]; then
@@ -65,17 +64,17 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 #source ~/.venv/bin/activate
 
 function _source_local_venv() {
-  local DIR_LIMIT=100
-  local d=$(pwd)
-  local n=0
+  _WMCD_DIR_LIMIT=100
+  _wmcd_d=$(pwd)
+  _wmcd_n=0
   while true; do
-    if [ -f "$d/.venv/bin/activate" ]; then
-      . "$d/.venv/bin/activate"
+    if [ -f "$_wmcd_d/.venv/bin/activate" ]; then
+      . "$_wmcd_d/.venv/bin/activate"
       break
     fi
-    d=$(dirname $d)
-    n=$((n + 1))
-    if [ "$d" = "/" ] || [ "$n" -eq "$DIR_LIMIT" ] ; then
+    _wmcd_d=$(dirname $_wmcd_d)
+    _wmcd_n=$((_wmcd_n + 1))
+    if [ "$_wmcd_d" = "/" ] || [ "$_wmcd_n" -eq "$_WMCD_DIR_LIMIT" ] ; then
       break;
     fi
   done
