@@ -1,5 +1,11 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 
+# Show how many shells deep we are, without overcounting from re-source
+_WMCD_SOURCE_COUNT=$((_WMCD_SOURCE_COUNT+1))
+if [ $_WMCD_SOURCE_COUNT == 1 ]; then
+  export _WMCD_BASH_DEPTH=$((_WMCD_BASH_DEPTH+1))
+fi
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
@@ -11,18 +17,22 @@ HISTCONTROL=ignoredups:ignorespace
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=100000
+HISTFILESIZE=100000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# make less more friendly for non-text input files, see lesspipe(1)
-# Security issue; disable this
-#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
 PS1='\w \[\033[1;36m\]$\[\033[0m\] '
+# Show how many shells deep we are, without overcounting from re-source
+if [[ $_WMCD_BASH_DEPTH > 1 ]]; then
+  PS1="[$_WMCD_BASH_DEPTH] $PS1"
+fi
+
+function _safealias() {
+  type $2 &>/dev/null && alias $1=$2 || echo "$1 is not $2"
+}
 
 # Alias definitions.
 if [ -f ~/.aliases ]; then
@@ -52,27 +62,13 @@ set -o vi
 export EDITOR=vim
 
 # Source our virtualenv, but do not change prompt
+# Make a new one like
+#  sudo apt install python3.8-venv
+#  python3 -m venv .venv
 export VIRTUAL_ENV_DISABLE_PROMPT=1
-source ~/.venv/bin/activate
+#source ~/.venv/bin/activate
 
-# Toggle touchpad
-function touchpad-toggle {
-  SYNSTATE=$(synclient -l | grep TouchpadOff | awk '{ print $3 }')
-  if [ $SYNSTATE = 0 ]; then
-    synclient touchpadoff=1
-    echo "Touchpad turned OFF"
-  elif [ $SYNSTATE = 1 ]; then
-    synclient touchpadoff=0
-    echo "Touchpad turned ON"
-  else
-    echo "Could not get status from synclient"
-    exit 1
-  fi
-}
-
-# Automatically source virtualenv
-function cd() {
-  builtin cd "$@"
+function _source_local_venv() {
   DIR_LIMIT=100
   d=$(pwd)
   n=0
@@ -87,4 +83,12 @@ function cd() {
       break;
     fi
   done
+}
+
+_source_local_venv
+
+# Automatically source virtualenv
+function cd() {
+  builtin cd "$@"
+  _source_local_venv
 }

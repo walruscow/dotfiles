@@ -60,7 +60,7 @@ nnoremap <S-Enter> O<Esc>j
 " Don't move when searching current word
 nnoremap # #N
 
-execute pathogen#infect()
+" execute pathogen#infect()
 
 let mapleader = "\<Space>"
 
@@ -74,3 +74,7 @@ nmap <Leader>p "+p
 nmap <Leader>P "+P
 vmap <Leader>p "+p
 vmap <Leader>P "+P
+
+" For WSL terminal, so that it stops making a beep when I backspace at the
+" start of a line in vim
+set visualbell
