@@ -30,10 +30,6 @@ if [[ $_WMCD_BASH_DEPTH > 1 ]]; then
   PS1="[$_WMCD_BASH_DEPTH] $PS1"
 fi
 
-function _safealias() {
-  type $2 &>/dev/null && alias $1=$2 || echo "$1 is not $2"
-}
-
 # Alias definitions.
 if [ -f ~/.aliases ]; then
     . ~/.aliases
@@ -69,9 +65,9 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 #source ~/.venv/bin/activate
 
 function _source_local_venv() {
-  DIR_LIMIT=100
-  d=$(pwd)
-  n=0
+  local DIR_LIMIT=100
+  local d=$(pwd)
+  local n=0
   while true; do
     if [ -f "$d/.venv/bin/activate" ]; then
       . "$d/.venv/bin/activate"
