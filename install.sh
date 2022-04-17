@@ -1,4 +1,6 @@
 for f in aliases bashrc complete-aliases.sh complete-git.sh gitconfig vimrc; do
-  mv ~/.$f ~/.$f.bk
-  ln -s $(pwd)/$f ~/.$f 
+  if ! [[ $(realpath ~/.$f) == $(realpath $f) ]]; then
+    mv ~/.$f ~/.$f.bk &>/dev/null
+    ln -s $(pwd)/$f ~/.$f
+  fi
 done
