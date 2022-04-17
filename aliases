@@ -28,3 +28,5 @@ alias wifi='sudo iwlist wlan0 scan'
 alias TT='touchpad-toggle'
 alias chrome='google-chrome'
 alias ack='ag'
+#_opt_alias vim nvim
+_opt_alias vi vim

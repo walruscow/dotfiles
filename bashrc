@@ -1,4 +1,6 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
+#set -x
+
 # Show how many shells deep we are, without overcounting from re-source
 _WMCD_SOURCE_COUNT=$((_WMCD_SOURCE_COUNT+1))
 if [ $_WMCD_SOURCE_COUNT == 1 ]; then
@@ -28,6 +30,10 @@ PS1='\w \[\033[1;36m\]$\[\033[0m\] '
 if [[ $_WMCD_BASH_DEPTH > 1 ]]; then
   PS1="[$_WMCD_BASH_DEPTH] $PS1"
 fi
+
+function _opt_alias() {
+  type $2 &>/dev/null && alias $1="$2"
+}
 
 # Alias definitions.
 if [ -f ~/.aliases ]; then
@@ -64,6 +70,7 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 #source ~/.venv/bin/activate
 
 function _source_local_venv() {
+  # These can't be local vars since we use them inside the below loop
   _WMCD_DIR_LIMIT=100
   _wmcd_d=$(pwd)
   _wmcd_n=0
