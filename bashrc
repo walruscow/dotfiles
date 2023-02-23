@@ -6,6 +6,7 @@ _WMCD_SOURCE_COUNT=$((_WMCD_SOURCE_COUNT+1))
 if [ $_WMCD_SOURCE_COUNT == 1 ]; then
   export _WMCD_BASH_DEPTH=$((_WMCD_BASH_DEPTH+1))
 fi
+alias tmux='_WMCD_BASH_DEPTH=$((_WMCD_BASH_DEPTH-1)) tmux'
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -62,12 +63,21 @@ set -o vi
 
 export EDITOR=vim
 
+# Rust
+. "$HOME/.cargo/env"
+
+# nvm / node
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#nvm use node
+
 # Source our virtualenv, but do not change prompt
 # Make a new one like
 #  sudo apt install python3.8-venv
 #  python3 -m venv .venv
 export VIRTUAL_ENV_DISABLE_PROMPT=1
-#source ~/.venv/bin/activate
+
 
 function _source_local_venv() {
   # These can't be local vars since we use them inside the below loop
@@ -94,3 +104,6 @@ function cd() {
   builtin cd "$@"
   _source_local_venv
 }
+
+# Always try tmux
+#tmux new -As0

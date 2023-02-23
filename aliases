@@ -5,7 +5,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 # ls
-alias ll='ls -alF'
+alias ll='ls -alFh'
 alias la='ls -A'
 alias l='ls'
 
@@ -22,7 +22,7 @@ alias python='python3'
 alias g++="g++ -std=c++0x"
 
 # Shortcuts
-alias serve='python2 -m SimpleHTTPServer'
+alias serve='python -m http.server'
 alias h?='history | grep'
 alias wifi='sudo iwlist wlan0 scan'
 alias TT='touchpad-toggle'
