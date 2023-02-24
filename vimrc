@@ -75,6 +75,5 @@ nmap <Leader>P "+P
 vmap <Leader>p "+p
 vmap <Leader>P "+P
 
-" For WSL terminal, so that it stops making a beep when I backspace at the
-" start of a line in vim
-set visualbell
+" No annoying sounds
+set belloff=all
