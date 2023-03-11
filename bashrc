@@ -28,8 +28,8 @@ shopt -s checkwinsize
 
 PS1='\w \[\033[1;36m\]$\[\033[0m\] '
 # Show how many shells deep we are, without overcounting from re-source
-if [[ $_WMCD_BASH_DEPTH > 1 ]]; then
-  PS1="[$_WMCD_BASH_DEPTH] $PS1"
+if [[ $_WMCD_BASH_DEPTH > 2 ]]; then
+  PS1="[$((_WMCD_BASH_DEPTH-1))] $PS1"
 fi
 
 function _opt_alias() {
