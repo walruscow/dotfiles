@@ -105,5 +105,10 @@ function cd() {
   _source_local_venv
 }
 
+# recursive find/replace
+function seds() {
+  rg -l "$1" | xargs sed -i "s/$1/$2/g"
+}
+
 # Always try tmux
 #tmux new -As0
