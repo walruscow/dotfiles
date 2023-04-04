@@ -40,6 +40,7 @@ function _opt_alias() {
 if [ -f ~/.aliases ]; then
     . ~/.aliases
 fi
+alias h?='history | grep'
 
 # enable programmable completion features
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
