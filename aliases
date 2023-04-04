@@ -23,7 +23,7 @@ alias g++="g++ -std=c++0x"
 
 # Shortcuts
 alias serve='python -m http.server'
-alias h?='history | grep'
+alias 'h?=history | rg'
 alias wifi='sudo iwlist wlan0 scan'
 alias TT='touchpad-toggle'
 alias chrome='google-chrome'
