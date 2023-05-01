@@ -33,3 +33,11 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 
 alias history='history 1'
 alias 'h?=history | rg'
+
+# local extensions to our zshrc that we don't want checked in
+# this lets us have a clean git repo here while supporting
+# proprietary environments
+_LOCAL_ZSH="${0:a:h}/local/zshrc"
+if [ -f "$_LOCAL_ZSH" ]; then
+    . "$_LOCAL_ZSH"
+fi
