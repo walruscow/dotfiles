@@ -32,7 +32,10 @@ setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history 
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
 
 alias history='history 1'
-alias 'h?=history | rg'
+function _history_grep() {
+  history | rg --color always $@ | tail -20
+}
+alias 'h?=_history_grep'
 
 # disable ctrl-S
 stty -ixon

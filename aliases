@@ -33,3 +33,5 @@ _opt_alias vim nvim
 _opt_alias vi vim
 
 alias tmt='tmux attach || tmux'
+
+alias vf='vi $(fzf)'
