@@ -10,6 +10,7 @@ dotfiles = {
     'zshrc': '~/.zshrc',
     'tmux.conf': '~/.tmux.conf',
     'nvim_init.lua': '~/.config/nvim/init.lua',
+    'fix_path.py': '~/.bin/fix_path.py',
 }
 src_dir = os.path.dirname(os.path.realpath(__file__))
 dotfiles = {os.path.join(src_dir, s): d for s, d in dotfiles.items()}

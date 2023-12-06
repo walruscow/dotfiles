@@ -35,33 +35,8 @@ if [[ $_WMCD_BASH_DEPTH > 2 ]]; then
   PS1="[$((_WMCD_BASH_DEPTH-1))] $PS1"
 fi
 
-function _opt_alias() {
-  type $2 &>/dev/null && alias $1="$2"
-}
-
-# Alias definitions.
-if [ -f ~/.aliases ]; then
-    . ~/.aliases
-fi
-alias h?='history | grep'
-
-# enable programmable completion features
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
-
-if [ -f ~/complete-aliases.sh ]; then
-  . ~/.complete-aliases.sh
-fi
-
-if [ -f ~/.complete-git.sh ]; then
-  . ~/.complete-git.sh
-  __git_complete g __git_main
-  __git_complete gc _git_checkout
-  __git_complete gb _git_branch
-fi
-
 export PATH=$PATH:$HOME/.bin
+export PATH=$(fix_path.py $PATH)
 
 set -o vi
 
@@ -81,7 +56,6 @@ export NVM_DIR="$HOME/.nvm"
 #  sudo apt install python3.8-venv
 #  python3 -m venv .venv
 export VIRTUAL_ENV_DISABLE_PROMPT=1
-
 
 function _source_local_venv() {
   # These can't be local vars since we use them inside the below loop
@@ -113,6 +87,32 @@ function cd() {
 function seds() {
   rg -l "$1" | xargs sed -i "s/$1/$2/g"
 }
+
+function _opt_alias() {
+  type $2 &>/dev/null && alias $1="$2"
+}
+
+# Alias definitions.
+if [ -f ~/.aliases ]; then
+    . ~/.aliases
+fi
+alias h?='history | grep'
+
+# enable programmable completion features
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
+
+if [ -f ~/complete-aliases.sh ]; then
+  . ~/.complete-aliases.sh
+fi
+
+if [ -f ~/.complete-git.sh ]; then
+  . ~/.complete-git.sh
+  __git_complete g __git_main
+  __git_complete gc _git_checkout
+  __git_complete gb _git_branch
+fi
 
 # Always try tmux
 #tmux new -As0
